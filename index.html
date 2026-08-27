@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Seguro - AM Seguros Generales</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- SDK de Firebase para notificaciones -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js"></script>
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-dark bg-primary shadow-sm mb-4">
+    <div class="container">
+      <span class="navbar-brand fw-bold">AM SEGUROS - Consulta de Pólizas</span>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 600px;">
+    
+    <!-- PANTALLA DE INGRESO (DNI) -->
+    <div id="loginScreen" class="card shadow-sm p-4 mb-4">
+      <h4 class="text-primary fw-bold mb-3">Portal de Asegurados</h4>
+      <p class="text-muted small">Ingresa tu número de DNI para ver el estado actual de tus pólizas y coberturas.</p>
+      
+      <div class="mb-3">
+        <label for="inputDni" class="form-label fw-bold">Número de DNI</label>
+        <input type="number" id="inputDni" class="form-control form-control-lg" placeholder="Ej: 30123456">
+      </div>
+      
+      <button class="btn btn-primary btn-lg fw-bold w-100" onclick="iniciarSesion()">Consultar Pólizas</button>
+    </div>
+
+    <!-- PANTALLA DE RESULTADOS (Oculta al inicio) -->
+    <div id="dashboardScreen" style="display: none;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold m-0">Hola, <span id="nombreCliente" class="text-primary"></span></h5>
+        <button class="btn btn-outline-secondary btn-sm" onclick="cerrarSesion()">Salir</button>
+      </div>
+      
+      <div class="alert alert-info shadow-sm d-flex justify-content-between align-items-center">
+        <div>
+          <span class="fw-bold d-block small">¿Quieres recibir alertas importantes?</span>
+          <span class="text-muted" style="font-size: 11px;">Te avisaremos si hay cambios en tus pólizas.</span>
+        </div>
+        <button class="btn btn-sm btn-dark fw-bold text-nowrap ms-2" onclick="activarNotificaciones()">Activar Alertas</button>
+      </div>
+
+      <div id="contenedorPolizas"></div>
+    </div>
+  </div>
+
+  <script>
+    // 1. PEGA AQUÍ LA URL DE TU WEB APP DE GOOGLE APPS SCRIPT (La que obtienes al hacer "Nueva implementación")
+    const API_URL = "https://script.google.com/macros/s/AKfycbw8t5gKior30D1zs8eIXuePUi7uvwuxMEwhjffHb71i/dev";
+    
+    // 2. TUS CREDENCIALES DE FIREBASE (Las que guardaste en el bloc de notas)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDcae8M6_Dib13QB3J_yfR-81a2M4xrHJY",
+      authDomain: "app-clientes-am-seguros.firebaseapp.com",
+      projectId: "app-clientes-am-seguros",
+      storageBucket: "app-clientes-am-seguros.firebasestorage.app",
+      messagingSenderId: "937181322047",
+      appId: "1:937181322047:web:34f98b22fccdffc5c4518a",
+      measurementId: "G-0HNHG9PKNQ"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+    
+    // 3. TU CLAVE VAPID PÚBLICA (La que generaste en la sección de Certificados Web Push)
+    const VAPID_KEY = "BKAWr1CoKUd38f2Lan5nvcinYxFziH90FKj0D0usSynSffV2l9rf4orU_yQV9hEE3o-PIV0IXqOrr2htg4HEM";
+
+    let dniActual = "";
+
+    async function iniciarSesion() {
+      dniActual = document.getElementById('inputDni').value.trim();
+      if(!dniActual) return alert("Por favor, ingresa tu DNI.");
+
+      // Efecto visual de carga
+      event.target.innerText = "Buscando...";
+      
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          body: JSON.stringify({ accion: "login_y_obtener_polizas", dni: dniActual }),
+          headers: { "Content-Type": "text/plain;charset=utf-8" }
+        });
+        
+        const datos = await res.json();
+        
+        if(datos.success) {
+          document.getElementById('loginScreen').style.display = 'none';
+          document.getElementById('dashboardScreen').style.display = 'block';
+          document.getElementById('nombreCliente').innerText = datos.nombre;
+          
+          let html = "";
+          datos.polizas.forEach(p => {
+            let color = "success";
+            let estUpper = p.estado.toUpperCase();
+            if (estUpper.includes("IMPAGA") || estUpper.includes("VENCIDA")) color = "danger";
+            else if (estUpper.includes("PENDIENTE") || estUpper.includes("PROCESO")) color = "warning";
+
+            html += `
+              <div class="card mb-3 shadow-sm border-start border-4 border-${color}">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="fw-bold m-0 text-dark">${p.vehiculo || "Cobertura General"}</h6>
+                    <span class="badge bg-${color}">${p.estado}</span>
+                  </div>
+                  <hr class="my-2 text-muted">
+                  <div class="small text-secondary">
+                    <div>Póliza N°: <strong class="text-dark">${p.poliza}</strong></div>
+                    <div>Compañía: <strong class="text-dark">${p.compania}</strong></div>
+                    <div>Cobertura: <strong class="text-dark">${p.cobertura}</strong></div>
+                    <div>Patente / Dominio: <strong class="text-dark">${p.patente}</strong></div>
+                  </div>
+                </div>
+              </div>`;
+          });
+          document.getElementById('contenedorPolizas').innerHTML = html;
+        } else {
+          alert(datos.mensaje || "No se encontraron registros para este DNI.");
+        }
+      } catch (e) {
+        alert("Error de conexión con el servidor.");
+      } finally {
+        event.target.innerText = "Consultar Pólizas";
+      }
+    }
+
+    async function activarNotificaciones() {
+      try {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+          const token = await messaging.getToken({ vapidKey: VAPID_KEY });
+          
+          // Enviamos el Token a Apps Script para guardarlo en la hoja CL NUEVO (Columna M)
+          await fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify({ accion: "guardar_token_push", dni: dniActual, token: token }),
+            headers: { "Content-Type": "text/plain;charset=utf-8" }
+          });
+          
+          alert("¡Notificaciones activadas con éxito! Recibirás avisos en este dispositivo.");
+        } else {
+          alert("Permiso de notificaciones denegado en el navegador.");
+        }
+      } catch (error) {
+        console.error("Error al activar notificaciones:", error);
+        alert("No se pudo activar las notificaciones.");
+      }
+    }
+
+    function cerrarSesion() {
+      document.getElementById('dashboardScreen').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'block';
+      document.getElementById('inputDni').value = '';
+      dniActual = "";
+    }
+  </script>
+</body>
+</html>
