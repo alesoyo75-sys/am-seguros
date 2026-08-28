@@ -4,57 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AM Seguros Generales | Asesoría y Producción de Seguros</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+            background-color: #f8fafc;
+        }
+        .navbar {
+            background-color: #0f172a !important;
+        }
         .hero-section {
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
             color: white;
-            padding: 80px 0;
+            padding: 100px 0;
         }
         .card-service {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #ffffff;
         }
         .card-service:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+        .form-control, .form-select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+        .form-control:focus, .form-select:focus {
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+            border-color: #1e3a8a;
         }
         footer {
-            background-color: #212529;
-            color: #adb5bd;
+            background-color: #0f172a;
+            color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
-    <!-- Barra de Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-shield-check text-primary me-2"></i>AM Seguros</a>
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <i class="bi bi-shield-check text-primary fs-3 me-2"></i>
+                <span>AM Seguros</span>
+            </a>
             <div class="ms-auto">
-                <a href="/clientes/" class="btn btn-outline-light btn-sm fw-bold"><i class="bi bi-person-lock me-1"></i>Portal de Asegurados</a>
+                <a href="/clientes/" class="btn btn-outline-light btn-sm fw-semibold px-3 py-2">
+                    <i class="bi bi-person-lock me-1"></i>Portal de Asegurados
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Sección Hero (Principal) -->
     <header class="hero-section text-center">
         <div class="container">
             <h1 class="display-4 fw-bold mb-3">Protegemos lo que más te importa</h1>
-            <p class="lead mb-4 col-lg-8 mx-auto">Asesoramiento profesional y gestión integral en seguros generales. Encontrá la cobertura perfecta para tu vehículo, hogar y empresa.</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="/clientes/" class="btn btn-light btn-lg fw-bold text-primary px-4 shadow">Consultar mis Pólizas</a>
+            <p class="lead mb-4 col-lg-8 mx-auto text-light opacity-9lections">Asesoramiento profesional y gestión integral en seguros generales. Encontrá la cobertura perfecta para tu vehículo, hogar y empresa.</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="#cotizador" class="btn btn-primary btn-lg fw-bold px-4 shadow-sm">Cotizar Automotor</a>
                 <a href="#contacto" class="btn btn-outline-light btn-lg px-4">Contactanos</a>
             </div>
         </div>
     </header>
 
-    <!-- Sección de Servicios -->
-    <section class="py-5 bg-light">
+    <section class="py-5 bg-white">
         <div class="container py-4">
             <div class="text-center mb-5">
                 <h2 class="fw-bold text-dark">Nuestras Coberturas</h2>
@@ -62,29 +82,29 @@
             </div>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card card-service h-100 p-4 shadow-sm bg-white">
+                    <div class="card card-service h-100 p-4">
                         <div class="card-body">
                             <div class="text-primary fs-1 mb-3"><i class="bi bi-car-front"></i></div>
-                        <h4 class="fw-bold h5">Automotores</h4>
-                        <p class="text-muted small">Coberturas completas contra terceros, robo, incendio y daño total o parcial con las mejores compañías del mercado.</p>
+                            <h4 class="fw-bold h5 mb-3">Automotores</h4>
+                            <p class="text-muted small mb-0">Coberturas completas contra terceros, robo, incendio y daño total o parcial con las mejores compañías del mercado.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card card-service h-100 p-4 shadow-sm bg-white">
+                    <div class="card card-service h-100 p-4">
                         <div class="card-body">
                             <div class="text-primary fs-1 mb-3"><i class="bi bi-house-door"></i></div>
-                        <h4 class="fw-bold h5">Hogar y Comercio</h4>
-                        <p class="text-muted small">Protegé tu vivienda o negocio ante cualquier imprevisto, incendios, robos y daños estructurales.</p>
+                            <h4 class="fw-bold h5 mb-3">Hogar y Comercio</h4>
+                            <p class="text-muted small mb-0">Protegé tu vivienda o negocio ante cualquier imprevisto, incendios, robos y daños estructurales.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card card-service h-100 p-4 shadow-sm bg-white">
+                    <div class="card card-service h-100 p-4">
                         <div class="card-body">
                             <div class="text-primary fs-1 mb-3"><i class="bi bi-briefcase"></i></div>
-                        <h4 class="fw-bold h5">Seguros Generales</h4>
-                        <p class="text-muted small">Asesoramiento integral y personalizado para flotas, accidentes personales y coberturas corporativas.</p>
+                            <h4 class="fw-bold h5 mb-3">Seguros Generales</h4>
+                            <p class="text-muted small mb-0">Asesoramiento integral y personalizado para flotas, accidentes personales y coberturas corporativas.</p>
                         </div>
                     </div>
                 </div>
@@ -92,11 +112,61 @@
         </div>
     </section>
 
-    <!-- Sección de Contacto e Información -->
+    <section id="cotizador" class="py-5 bg-light border-top border-bottom">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm border-0 p-4 p-md-5 bg-white rounded-4">
+                        <div class="text-center mb-4">
+                            <h2 class="fw-bold text-dark">Cotizá tu Auto Online</h2>
+                            <p class="text-muted small">Completá los datos de tu vehículo y recibí una cotización personalizada por WhatsApp de inmediato.</p>
+                        </div>
+                        <form id="quoteForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold small">Marca del Auto</label>
+                                    <input type="text" class="form-control" id="marca" placeholder="Ej. Volkswagen, Ford..." required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold small">Modelo</label>
+                                    <input type="text" class="form-control" id="modelo" placeholder="Ej. Gol Trend, Fiesta..." required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold small">Versión (Opcional)</label>
+                                    <input type="text" class="form-control" id="version" placeholder="Ej. 1.6 Highline">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold small">Año</label>
+                                    <select class="form-select" id="anio" required>
+                                        <option value="" selected disabled>Seleccioná el año</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2015-2019">2015 - 2019</option>
+                                        <option value="Anterior a 2015">Anterior a 2015</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-success btn-lg w-100 fw-bold py-3 shadow-sm">
+                                        <i class="bi bi-whatsapp me-2 fs-5"></i>Solicitar Cotización por WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contacto" class="py-5 bg-white">
         <div class="container py-4">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
                     <h2 class="fw-bold mb-3">Atención Personalizada</h2>
                     <p class="text-muted">Nos encontramos a tu disposición para brindarte el asesoramiento que necesitas. Visítanos en nuestra oficina o comunícate con nosotros.</p>
                     <ul class="list-unstyled mt-4">
@@ -115,23 +185,41 @@
                     </ul>
                 </div>
                 <div class="col-lg-6">
-                    <div class="card shadow border-0 p-4 bg-light">
+                    <div class="card shadow-sm border-0 p-4 bg-light rounded-4">
                         <h4 class="fw-bold mb-3 text-primary">¿Sos cliente?</h4>
                         <p class="text-muted small mb-4">Accede directamente al portal para ver el estado actual de tus pólizas, coberturas y vencimientos ingresando con tu número de documento.</p>
-                        <a href="/clientes/" class="btn btn-primary btn-lg fw-bold w-100"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar al Portal de Asegurados</a>
+                        <a href="/clientes/" class="btn btn-primary btn-lg fw-bold w-100 py-3 shadow-sm">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar al Portal de Asegurados
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-4 text-center">
         <div class="container">
             <p class="mb-1 fw-bold text-light">AM Seguros Generales</p>
             <p class="small text-muted mb-0">&copy; 2026 Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const version = document.getElementById('version').value || 'No especificada';
+            const anio = document.getElementById('anio').value;
+
+            const telefonoDestino = '5491162528083'; // Número configurado para WhatsApp
+            const mensaje = `Hola! Me gustaría solicitar una cotización para mi vehículo:\n\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}`;
+            
+            const urlWhatsApp = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
 
 </body>
 </html>
