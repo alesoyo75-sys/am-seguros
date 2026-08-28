@@ -19,17 +19,55 @@
         .navbar {
             background-color: #0f172a !important;
         }
-        /* Estilo para que tu logo luzca perfecto y proporcionado en la barra */
         .navbar-brand img {
             height: 38px;
             width: auto;
             object-fit: contain;
         }
-        .hero-section {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        
+        /* Estilo Hero Inmersivo similar a la referencia */
+        .hero-banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), 
+                        url('https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            padding: 100px 0;
+            text-align: center;
+            position: relative;
         }
+
+        .hero-logo-large {
+            max-height: 110px;
+            width: auto;
+            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.6));
+        }
+
+        /* Botones estilo elegante sobre la imagen */
+        .btn-hero-option {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            padding: 14px 24px;
+            border-radius: 6px;
+        }
+
+        .btn-hero-option:hover {
+            background: #ffffff;
+            color: #0f172a;
+            border-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
         .card-service {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e2e8f0;
@@ -50,6 +88,19 @@
             box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
             border-color: #1e3a8a;
         }
+
+        /* Botón flotante estilo "Pagá tu póliza" */
+        .floating-pay-btn {
+            background-color: #6f42c1;
+            border: none;
+            z-index: 1050;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .floating-pay-btn:hover {
+            background-color: #59339d;
+            transform: scale(1.05);
+        }
+
         footer {
             background-color: #0f172a;
             color: #94a3b8;
@@ -58,12 +109,16 @@
 </head>
 <body>
 
-    <!-- Barra de Navegación con tu Logo -->
+    <!-- Botón Flotante Inferior Derecho ("Pagá tu póliza") -->
+    <a href="/clientes/" class="floating-pay-btn btn shadow-lg rounded-pill position-fixed bottom-0 end-0 m-4 text-white fw-bold d-flex align-items-center gap-2 px-4 py-3">
+        <i class="bi bi-wallet2 fs-5"></i> Pagá tu Póliza
+    </a>
+
+    <!-- Barra de Navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                <!-- Reemplazá 'logo.jpg' por el nombre exacto del archivo de tu logo en GitHub -->
-                <img src="logo.png" alt="AM Seguros Logo" class="me-2">
+                <img src="logo.png" alt="AM Seguros" class="me-2">
                 <span>AM Seguros</span>
             </a>
             <div class="ms-auto">
@@ -74,63 +129,35 @@
         </div>
     </nav>
 
-    <!-- Sección Hero (Principal) -->
-    <header class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-3">Protegemos lo que más te importa</h1>
-            <p class="lead mb-4 col-lg-8 mx-auto text-light opacity-90">Asesoramiento profesional y gestión integral en seguros generales. Encontrá la cobertura perfecta para tu vehículo, hogar y empresa.</p>
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="#cotizador" class="btn btn-primary btn-lg fw-bold px-4 shadow-sm">Cotizar Automotor</a>
-                <a href="#contacto" class="btn btn-outline-light btn-lg px-4">Contactanos</a>
+    <!-- Sección Hero Inmersiva (Estilo Liderar Seguros) -->
+    <header class="hero-banner">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Tu Logo en el centro y grande -->
+                    <div class="mb-4">
+                        <img src="logo.png" alt="AM Seguros Logo" class="hero-logo-large">
+                    </div>
+                    <h1 class="display-6 fw-bold mb-5 text-white">Asesoramiento Profesional y Gestión Integral</h1>
+                    
+                    <!-- Botones de acceso rápido como pediste -->
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="#cotizador" class="btn btn-hero-option">Seguro Automotor</a>
+                        <a href="#contacto" class="btn btn-hero-option">Seguro de Hogar</a>
+                        <a href="#contacto" class="btn btn-hero-option">Seguro Comercios</a>
+                        <a href="#contacto" class="btn btn-hero-option">Microseguros</a>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Sección de Servicios -->
-    <section class="py-5 bg-white">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold text-dark">Nuestras Coberturas</h2>
-                <p class="text-muted">Soluciones a medida para cada necesidad</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card card-service h-100 p-4">
-                        <div class="card-body">
-                            <div class="text-primary fs-1 mb-3"><i class="bi bi-car-front"></i></div>
-                            <h4 class="fw-bold h5 mb-3">Automotores</h4>
-                            <p class="text-muted small mb-0">Coberturas completas contra terceros, robo, incendio y daño total o parcial con las mejores compañías del mercado.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-service h-100 p-4">
-                        <div class="card-body">
-                            <div class="text-primary fs-1 mb-3"><i class="bi bi-house-door"></i></div>
-                            <h4 class="fw-bold h5 mb-3">Hogar y Comercio</h4>
-                            <p class="text-muted small mb-0">Protegé tu vivienda o negocio ante cualquier imprevisto, incendios, robos y daños estructurales.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-service h-100 p-4">
-                        <div class="card-body">
-                            <div class="text-primary fs-1 mb-3"><i class="bi bi-briefcase"></i></div>
-                            <h4 class="fw-bold h5 mb-3">Seguros Generales</h4>
-                            <p class="text-muted small mb-0">Asesoramiento integral y personalizado para flotas, accidentes personales y coberturas corporativas.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Cotizador Online -->
-    <section id="cotizador" class="py-5 bg-light border-top border-bottom">
+    <!-- Sección de Cotizador Online (Automotor) -->
+    <section id="cotizador" class="py-5 bg-white border-bottom">
         <div class="container py-4">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="card shadow-sm border-0 p-4 p-md-5 bg-white rounded-4">
+                    <div class="card shadow-sm border-0 p-4 p-md-5 bg-light rounded-4">
                         <div class="text-center mb-4">
                             <h2 class="fw-bold text-dark">Cotizá tu Auto Online</h2>
                             <p class="text-muted small">Completá los datos de tu vehículo y recibí una cotización personalizada por WhatsApp de inmediato.</p>
@@ -226,11 +253,11 @@
             e.preventDefault();
             
             const marca = document.getElementById('marca').value;
-            const modelo = document.getElementById('modelo', 'modelo').value;
+            const modelo = document.getElementById('modelo').value;
             const version = document.getElementById('version').value || 'No especificada';
             const anio = document.getElementById('anio').value;
 
-            const telefonoDestino = '5491162528083'; // Número configurado para WhatsApp
+            const telefonoDestino = '5491162528083';
             const mensaje = `Hola! Me gustaría solicitar una cotización para mi vehículo:\n\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}`;
             
             const urlWhatsApp = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
