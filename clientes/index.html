@@ -39,7 +39,7 @@
         <button class="btn btn-outline-secondary btn-sm" onclick="cerrarSesion()">Salir</button>
       </div>
       
-      <div class="alert alert-info shadow-sm d-flex justify-content-between align-items-center">
+      <div class="alert alert-info shadow-sm d-flex justify-content-between align-items-center" id="alertNotif" style="display: none;">
         <div>
           <span class="fw-bold d-block small">¿Quieres recibir alertas importantes?</span>
           <span class="text-muted" style="font-size: 11px;">Te avisaremos si hay cambios en tus pólizas.</span>
@@ -67,19 +67,31 @@
     };
     
     firebase.initializeApp(firebaseConfig);
-    const messaging = firebase.messaging();
+
+    let messaging = null;
+    // Validar soporte de messaging y evitar bloqueos en entornos HTTP no seguros
+    if (typeof firebase.messaging === 'function') {
+      firebase.messaging.isSupported().then((supported) => {
+        if (supported) {
+          messaging = firebase.messaging();
+          document.getElementById('alertNotif').style.display = 'flex';
+        }
+      }).catch(err => console.log("Firebase Messaging no disponible en este entorno", err));
+    }
     
     // Tu clave VAPID pública
     const VAPID_KEY = "BKAWr1CoKUd38f2Lan5nvcinYxFziH90FKj0D0usSynSffV2l9rf4orU_yQV9hEE3o-PIV0IXqOrr2htg4HEM";
 
-    let dniActual = "";
+    var dniActual = "";
 
     async function iniciarSesion(e) {
       dniActual = document.getElementById('inputDni').value.trim();
       if(!dniActual) return alert("Por favor, ingresa tu DNI.");
 
       const btn = (e && e.target) ? e.target : document.querySelector('button');
+      const textoOriginal = btn.innerText;
       btn.innerText = "Buscando...";
+      btn.disabled = true;
       
       try {
         const res = await fetch(API_URL, {
@@ -98,7 +110,7 @@
           let html = "";
           datos.polizas.forEach(p => {
             let color = "success";
-            let estUpper = p.estado.toUpperCase();
+            let estUpper = (p.estado || "").toUpperCase();
             if (estUpper.includes("IMPAGA") || estUpper.includes("VENCIDA")) color = "danger";
             else if (estUpper.includes("PENDIENTE") || estUpper.includes("PROCESO")) color = "warning";
 
@@ -124,13 +136,18 @@
           alert(datos.mensaje || "No se encontraron registros para este DNI.");
         }
       } catch (err) {
+        console.error(err);
         alert("Error de conexión con el servidor.");
       } finally {
-        btn.innerText = "Consultar Pólizas";
+        btn.innerText = textoOriginal;
+        btn.disabled = false;
       }
     }
 
     async function activarNotificaciones() {
+      if (!messaging) {
+        return alert("Las notificaciones requieren que la página esté bajo HTTPS (conexión segura).");
+      }
       try {
         const permission = await Notification.requestPermission();
         if (permission === 'granted') {
