@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TH0N2X675L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TH0N2X675L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-TH0N2X675L');
-</script>
+      gtag('config', 'G-TH0N2X675L');
+    </script>
     <meta name="google-site-verification" content="460ENWNuGvxhafbnvCiH9PQ824wADrSl2sR7YZzhpg4" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +32,7 @@
             object-fit: contain;
         }
         
-        /* Estilo Hero Inmersivo similar a la referencia */
+        /* Estilo Hero Inmersivo */
         .hero-banner {
             background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), 
                         url('https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
@@ -40,14 +40,12 @@
             min-height: 85vh;
             display: flex;
             align-items: center;
-            justify-content: center;
             color: white;
-            text-align: center;
             position: relative;
         }
 
         .hero-logo-large {
-            max-height: 110px;
+            max-height: 100px;
             width: auto;
             filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.6));
         }
@@ -62,8 +60,8 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-size: 0.95rem;
-            padding: 14px 24px;
+            font-size: 0.85rem;
+            padding: 10px 18px;
             border-radius: 6px;
         }
 
@@ -75,21 +73,21 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        .card-service {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            background: #ffffff;
+        /* Tarjeta del Cotizador Flotante en el Hero */
+        .hero-quote-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            color: #0f172a;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        .card-service:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
-            border-color: #cbd5e1;
-        }
+
         .form-control, .form-select {
-            padding: 12px;
+            padding: 10px 12px;
             border-radius: 8px;
             border: 1px solid #cbd5e1;
+            font-size: 0.95rem;
         }
         .form-control:focus, .form-select:focus {
             box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
@@ -134,51 +132,48 @@
         </div>
     </nav>
 
-    <header class="hero-banner">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="mb-4">
+    <header class="hero-banner py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <!-- Columna Izquierda: Textos y accesos -->
+                <div class="col-lg-6 text-center text-lg-start">
+                    <div class="mb-3">
                         <img src="logo.png" alt="AM Seguros Logo" class="hero-logo-large">
                     </div>
-                    <h1 class="display-6 fw-bold mb-5 text-white">Asesoramiento Profesional y Gestión Integral</h1>
+                    <h1 class="display-5 fw-bold mb-4 text-white">Asesoramiento Profesional y Gestión Integral</h1>
+                    <p class="lead text-light mb-4 fs-6 opacity-90">Protegemos lo que más te importa con coberturas a medida y atención personalizada en todo momento.</p>
                     
-                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <div class="d-flex justify-content-center justify-content-lg-start gap-2 flex-wrap">
                         <a href="#cotizador" class="btn btn-hero-option">Seguro Automotor</a>
                         <a href="#contacto" class="btn btn-hero-option">Seguro de Hogar</a>
                         <a href="#contacto" class="btn btn-hero-option">Seguro Comercios</a>
                         <a href="#contacto" class="btn btn-hero-option">Microseguros</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </header>
 
-    <section id="cotizador" class="py-5 bg-white border-bottom">
-        <div class="container py-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow-sm border-0 p-4 p-md-5 bg-light rounded-4">
-                        <div class="text-center mb-4">
-                            <h2 class="fw-bold text-dark">Cotizá tu Auto Online</h2>
-                            <p class="text-muted small">Completá los datos de tu vehículo y recibí una cotización personalizada por WhatsApp de inmediato.</p>
+                <!-- Columna Derecha: Cotizador Flotante Integrado (Zona marcada en amarillo) -->
+                <div class="col-lg-6" id="cotizador">
+                    <div class="hero-quote-card p-4 p-md-4">
+                        <div class="text-center mb-3">
+                            <h3 class="fw-bold text-dark fs-4">Cotizá tu Auto Online</h3>
+                            <p class="text-muted small mb-0">Completá los datos y recibí una cotización por WhatsApp de inmediato.</p>
                         </div>
                         <form id="quoteForm">
-                            <div class="row g-3">
+                            <div class="row g-2">
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold small">Marca del Auto</label>
+                                    <label class="form-label fw-semibold small mb-1">Marca del Auto</label>
                                     <input type="text" class="form-control" id="marca" placeholder="Ej. Volkswagen, Ford..." required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold small">Modelo</label>
+                                    <label class="form-label fw-semibold small mb-1">Modelo</label>
                                     <input type="text" class="form-control" id="modelo" placeholder="Ej. Gol Trend, Fiesta..." required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold small">Versión (Opcional)</label>
+                                    <label class="form-label fw-semibold small mb-1">Versión (Opcional)</label>
                                     <input type="text" class="form-control" id="version" placeholder="Ej. 1.6 Highline">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold small">Año</label>
+                                    <label class="form-label fw-semibold small mb-1">Año</label>
                                     <select class="form-select" id="anio" required>
                                         <option value="" selected disabled>Seleccioná el año</option>
                                         <option value="2026">2026</option>
@@ -192,9 +187,9 @@
                                         <option value="Anterior a 2015">Anterior a 2015</option>
                                     </select>
                                 </div>
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="btn btn-success btn-lg w-100 fw-bold py-3 shadow-sm">
-                                        <i class="bi bi-whatsapp me-2 fs-5"></i>Solicitar Cotización por WhatsApp
+                                <div class="col-12 mt-3">
+                                    <button type="submit" class="btn btn-success btn-lg w-100 fw-bold py-2 shadow-sm fs-6">
+                                        <i class="bi bi-whatsapp me-2"></i>Solicitar Cotización por WhatsApp
                                     </button>
                                 </div>
                             </div>
@@ -203,7 +198,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
     <section id="contacto" class="py-5 bg-white">
         <div class="container py-4">
