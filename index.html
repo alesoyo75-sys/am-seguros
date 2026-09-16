@@ -85,10 +85,10 @@
         }
 
         .form-control, .form-select {
-            padding: 10px 12px;
+            padding: 9px 12px;
             border-radius: 8px;
             border: 1px solid #cbd5e1;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .form-control:focus, .form-select:focus {
             box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
@@ -152,22 +152,55 @@
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Cotizador Flotante Integrado -->
+                <!-- Columna Derecha: Cotizador Flotante Integrado con Autocompletado -->
                 <div class="col-lg-6" id="cotizador">
                     <div class="hero-quote-card p-4 p-md-4">
                         <div class="text-center mb-3">
-                            <h3 class="fw-bold text-dark fs-4">Cotizá tu Auto Online</h3>
+                            <h3 class="fw-bold text-dark fs-4">Cotizá tu Vehículo Online</h3>
                             <p class="text-muted small mb-0">Completá los datos y recibí una cotización por WhatsApp de inmediato.</p>
                         </div>
                         <form id="quoteForm">
                             <div class="row g-2">
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold small mb-1">Marca del Auto</label>
-                                    <input type="text" class="form-control" id="marca" placeholder="Ej. Volkswagen, Ford..." required>
+                                    <label class="form-label fw-semibold small mb-1">Marca (Auto o Moto)</label>
+                                    <input type="text" class="form-control" id="marca" placeholder="Ej. Volkswagen, Ford, Honda..." list="marcasSugeridas" required>
+                                    <!-- Lista de sugerencias automáticas -->
+                                    <datalist id="marcasSugeridas">
+                                        <!-- Autos -->
+                                        <option value="Volkswagen">
+                                        <option value="Ford">
+                                        <option value="Chevrolet">
+                                        <option value="Fiat">
+                                        <option value="Renault">
+                                        <option value="Toyota">
+                                        <option value="Peugeot">
+                                        <option value="Citroën">
+                                        <option value="Jeep">
+                                        <option value="Nissan">
+                                        <option value="Honda">
+                                        <option value="Hyundai">
+                                        <option value="Kia">
+                                        <option value="BMW">
+                                        <option value="Mercedes-Benz">
+                                        <option value="Audi">
+                                        <option value="Chery">
+                                        <option value="JAC">
+                                        <!-- Motos -->
+                                        <option value="Yamaha">
+                                        <option value="Zanella">
+                                        <option value="Corven">
+                                        <option value="Gilera">
+                                        <option value="Bajaj">
+                                        <option value="KTM">
+                                        <option value="Keller">
+                                        <option value="Motomel">
+                                        <option value="Royal Enfield">
+                                        <option value="Suzuki">
+                                    </datalist>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold small mb-1">Modelo</label>
-                                    <input type="text" class="form-control" id="modelo" placeholder="Ej. Gol Trend, Fiesta..." required>
+                                    <input type="text" class="form-control" id="modelo" placeholder="Ej. Gol Trend, F-150, Wave..." required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold small mb-1">Versión (Opcional)</label>
@@ -187,6 +220,10 @@
                                         <option value="2015-2019">2015 - 2019</option>
                                         <option value="Anterior a 2015">Anterior a 2015</option>
                                     </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold small mb-1">Código Postal</label>
+                                    <input type="text" class="form-control" id="cp" placeholder="Ej. 1744" required>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <button type="submit" class="btn btn-success btn-lg w-100 fw-bold py-2 shadow-sm fs-6">
@@ -250,9 +287,10 @@
             const modelo = document.getElementById('modelo').value;
             const version = document.getElementById('version').value || 'No especificada';
             const anio = document.getElementById('anio').value;
+            const cp = document.getElementById('cp').value;
 
             const telefonoDestino = '5491162528083';
-            const mensaje = `Hola! Me gustaría solicitar una cotización para mi vehículo:\n\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}`;
+            const mensaje = `Hola! Me gustaría solicitar una cotización para mi vehículo:\n\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}\n*Código Postal:* ${cp}`;
             
             const urlWhatsApp = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
             window.open(urlWhatsApp, '_blank');
