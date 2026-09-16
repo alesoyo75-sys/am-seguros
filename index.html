@@ -50,7 +50,7 @@
             filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.6));
         }
 
-        /* Botones estilo elegante sobre la imagen */
+        /* Botones estilo elegante sobre la imagen en una sola línea */
         .btn-hero-option {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
@@ -59,10 +59,11 @@
             font-weight: 600;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.85rem;
-            padding: 10px 18px;
+            letter-spacing: 0.3px;
+            font-size: 0.75rem;
+            padding: 8px 12px;
             border-radius: 6px;
+            white-space: nowrap;
         }
 
         .btn-hero-option:hover {
@@ -140,18 +141,18 @@
                     <div class="mb-3">
                         <img src="logo.png" alt="AM Seguros Logo" class="hero-logo-large">
                     </div>
-                    <h1 class="display-5 fw-bold mb-4 text-white">Asesoramiento Profesional y Gestión Integral</h1>
+                    <h1 class="display-6 fw-bold mb-3 text-white">Asesoramiento Profesional y Gestión Integral en Seguros</h1>
                     <p class="lead text-light mb-4 fs-6 opacity-90">Protegemos lo que más te importa con coberturas a medida y atención personalizada en todo momento.</p>
                     
-                    <div class="d-flex justify-content-center justify-content-lg-start gap-2 flex-wrap">
-                        <a href="#cotizador" class="btn btn-hero-option">Seguro Automotor</a>
-                        <a href="#contacto" class="btn btn-hero-option">Seguro de Hogar</a>
-                        <a href="#contacto" class="btn btn-hero-option">Seguro Comercios</a>
+                    <div class="d-flex justify-content-center justify-content-lg-start gap-2 flex-nowrap">
+                        <a href="#cotizador" class="btn btn-hero-option">Automotor</a>
+                        <a href="#contacto" class="btn btn-hero-option">Hogar</a>
+                        <a href="#contacto" class="btn btn-hero-option">Comercios</a>
                         <a href="#contacto" class="btn btn-hero-option">Microseguros</a>
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Cotizador Flotante Integrado (Zona marcada en amarillo) -->
+                <!-- Columna Derecha: Cotizador Flotante Integrado -->
                 <div class="col-lg-6" id="cotizador">
                     <div class="hero-quote-card p-4 p-md-4">
                         <div class="text-center mb-3">
