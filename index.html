@@ -50,28 +50,55 @@
             filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.6));
         }
 
-        /* Botones estilo elegante sobre la imagen en una sola línea */
-        .btn-hero-option {
-            background: rgba(255, 255, 255, 0.15);
+        /* Estilo para el Carrusel de Compañías Aseguradoras */
+        .companies-ticker-container {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            color: white;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            font-size: 0.75rem;
-            padding: 8px 12px;
-            border-radius: 6px;
-            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 12px 0;
+            position: relative;
+            margin-top: 1.5rem;
         }
 
-        .btn-hero-option:hover {
-            background: #ffffff;
-            color: #0f172a;
-            border-color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .companies-ticker-track {
+            display: flex;
+            width: max-content;
+            animation: scrollTicker 25s linear infinite;
+        }
+
+        .companies-ticker-container:hover .companies-ticker-track {
+            animation-play-state: paused;
+        }
+
+        .company-badge {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0 24px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.9;
+        }
+
+        .company-badge i {
+            color: #38bdf8;
+            font-size: 0.75rem;
+        }
+
+        @keyframes scrollTicker {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* Tarjeta del Cotizador Flotante en el Hero */
@@ -136,7 +163,7 @@
     <header class="hero-banner py-5">
         <div class="container">
             <div class="row align-items-center g-5">
-                <!-- Columna Izquierda: Textos y accesos -->
+                <!-- Columna Izquierda: Textos y Carrusel de Compañías -->
                 <div class="col-lg-6 text-center text-lg-start">
                     <div class="mb-3">
                         <img src="logo.png" alt="AM Seguros Logo" class="hero-logo-large">
@@ -144,15 +171,32 @@
                     <h1 class="display-6 fw-bold mb-3 text-white">Asesoramiento Profesional y Gestión Integral en Seguros</h1>
                     <p class="lead text-light mb-4 fs-6 opacity-90">Protegemos lo que más te importa con coberturas a medida y atención personalizada en todo momento.</p>
                     
-                    <div class="d-flex justify-content-center justify-content-lg-start gap-2 flex-nowrap">
-                        <a href="#cotizador" class="btn btn-hero-option">Automotor</a>
-                        <a href="#contacto" class="btn btn-hero-option">Hogar</a>
-                        <a href="#contacto" class="btn btn-hero-option">Comercios</a>
-                        <a href="#contacto" class="btn btn-hero-option">Microseguros</a>
+                    <!-- Carrusel Infinito de Compañías Aseguradoras -->
+                    <div class="companies-ticker-container">
+                        <div class="companies-ticker-track">
+                            <!-- Bloque 1 -->
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> San Cristóbal</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> Mercantil Andina</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> ATM Seguros</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> RUS (Río Uruguay)</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> Experta Seguros</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> Sancor Seguros</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> BBVA Seguros</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> Evolución Seguros</div>
+                            <!-- Bloque 2 (Duplicado para continuidad infinita fluida) -->
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> San Cristóbal</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> Mercantil Andina</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> ATM Seguros</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> RUS (Río Uruguay)</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> Experta Seguros</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> Sancor Seguros</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> BBVA Seguros</div>
+                            <div class="company-badge"><i class="bi bi-shield-fill-check"></i> Evolución Seguros</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Cotizador Flotante Integrado -->
+                <!-- Columna Derecha: Cotizador Flotante Integrado con Edad -->
                 <div class="col-lg-6" id="cotizador">
                     <div class="hero-quote-card p-4 p-md-4">
                         <div class="text-center mb-3">
@@ -240,7 +284,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold small mb-1">Edad</label>
+                                    <label class="form-label fw-semibold small mb-1">Edad
+                                    </label>
                                     <input type="number" class="form-control" id="edad" placeholder="Ej. 35" min="18" max="99" required>
                                 </div>
                                 <div class="col-md-6">
