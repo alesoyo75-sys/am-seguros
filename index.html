@@ -122,12 +122,17 @@
             border-color: #1e3a8a;
         }
 
-        /* Botones flotantes (WhatsApp izq. / Pagá tu póliza der.) */
+        /* Botones flotantes compactos y optimizados */
+        .floating-whatsapp-btn, .floating-pay-btn {
+            z-index: 1050;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            font-size: 0.85rem;
+            padding: 8px 14px;
+        }
+
         .floating-whatsapp-btn {
             background-color: #25d366;
             border: none;
-            z-index: 1050;
-            transition: transform 0.2s ease, background-color 0.2s ease;
         }
         .floating-whatsapp-btn:hover {
             background-color: #20ba5a;
@@ -137,8 +142,6 @@
         .floating-pay-btn {
             background-color: #6f42c1;
             border: none;
-            z-index: 1050;
-            transition: transform 0.2s ease, background-color 0.2s ease;
         }
         .floating-pay-btn:hover {
             background-color: #59339d;
@@ -154,13 +157,13 @@
 <body>
 
     <!-- Botón flotante de WhatsApp Directo (Izquierda) -->
-    <a href="https://wa.me/5491162528083?text=Hola!%20Quiero%20hacerle%20una%20consulta%20sobre%20seguros." target="_blank" class="floating-whatsapp-btn btn shadow-lg rounded-pill position-fixed bottom-0 start-0 m-4 text-white fw-bold d-flex align-items-center gap-2 px-4 py-3">
-        <i class="bi bi-whatsapp fs-5"></i> Consultanos
+    <a href="https://wa.me/5491162528083?text=Hola!%20Quiero%20hacerle%20una%20consulta%20sobre%20seguros." target="_blank" class="floating-whatsapp-btn btn shadow-lg rounded-pill position-fixed bottom-0 start-0 m-3 text-white fw-bold d-flex align-items-center gap-2">
+        <i class="bi bi-whatsapp fs-6"></i> <span>Consultanos</span>
     </a>
 
     <!-- Botón flotante de Pago (Derecha) -->
-    <a href="/clientes/" class="floating-pay-btn btn shadow-lg rounded-pill position-fixed bottom-0 end-0 m-4 text-white fw-bold d-flex align-items-center gap-2 px-4 py-3">
-        <i class="bi bi-wallet2 fs-5"></i> Pagá tu Póliza
+    <a href="/clientes/" class="floating-pay-btn btn shadow-lg rounded-pill position-fixed bottom-0 end-0 m-3 text-white fw-bold d-flex align-items-center gap-2">
+        <i class="bi bi-wallet2 fs-6"></i> <span>Pagá tu Póliza</span>
     </a>
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
