@@ -122,6 +122,27 @@
             border-color: #1e3a8a;
         }
 
+        /* Estilos para las tarjetas del equipo */
+        .team-member-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.3s ease, shadow 0.3s ease;
+        }
+        .team-member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
         /* Botones flotantes compactos y optimizados para no ocupar espacio excesivo */
         .floating-whatsapp-btn, .floating-pay-btn {
             z-index: 1050;
@@ -337,13 +358,27 @@
                     <p class="text-muted fs-6 mb-4" style="line-height: 1.8;">
                         No somos solo intermediarios: somos tu respaldo ante imprevistos. Trabajamos junto a las compañías aseguradoras más prestigiosas del mercado (San Cristóbal, Mercantil Andina, ATM, RUS, Experta, Sancor, BBVA y Evolución) para ofrecerte coberturas a medida que realmente se adapten a tus necesidades y a tu presupuesto.
                     </p>
-                    <div class="p-4 bg-light rounded-4 border-start border-primary border-4 text-start mt-4 shadow-sm">
+                    <div class="p-4 bg-light rounded-4 border-start border-primary border-4 text-start mt-4 shadow-sm mb-5">
                         <h5 class="fw-bold text-primary mb-1"><i class="bi bi-bullseye me-2"></i>Nuestra misión:</h5>
                         <p class="mb-0 text-dark">Proteger lo que más te importa con transparencia, agilidad y una respuesta rápida cuando más lo necesitás.</p>
                     </div>
-                    <div class="mt-4 text-muted small">
-                        <i class="bi bi-patch-check-fill text-primary fs-5 me-1 align-middle"></i> Productor Asesor de Seguros - Matrícula SSN N° <strong>106708</strong>
+
+                    <!-- Sección del Equipo / Profesionales -->
+                    <h3 class="fw-bold text-dark mb-4">Nuestro Equipo</h3>
+                    <div class="row justify-content-center g-4">
+                        <!-- Integrante 1 (Vos) - Podés duplicar esta columna a futuro para más miembros -->
+                        <div class="col-md-6 col-lg-5">
+                            <div class="team-member-card text-center">
+                                <img src="foto-perfil.jpg" alt="Alejandro Morcillo" class="team-avatar mb-3">
+                                <h5 class="fw-bold text-dark mb-1">Alejandro Javier Morcillo Olano</h5>
+                                <p class="text-primary fw-semibold small mb-2">Productor Asesor de Seguros</p>
+                                <div class="text-muted small">
+                                    <i class="bi bi-patch-check-fill text-primary me-1"></i> Matrícula SSN N° <strong>106708</strong>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
