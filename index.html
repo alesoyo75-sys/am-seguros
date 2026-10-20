@@ -122,7 +122,18 @@
             border-color: #1e3a8a;
         }
 
-        /* Botón flotante estilo "Pagá tu póliza" */
+        /* Botones flotantes (WhatsApp izq. / Pagá tu póliza der.) */
+        .floating-whatsapp-btn {
+            background-color: #25d366;
+            border: none;
+            z-index: 1050;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .floating-whatsapp-btn:hover {
+            background-color: #20ba5a;
+            transform: scale(1.05);
+        }
+
         .floating-pay-btn {
             background-color: #6f42c1;
             border: none;
@@ -142,6 +153,12 @@
 </head>
 <body>
 
+    <!-- Botón flotante de WhatsApp Directo (Izquierda) -->
+    <a href="https://wa.me/5491162528083?text=Hola!%20Quiero%20hacerle%20una%20consulta%20sobre%20seguros." target="_blank" class="floating-whatsapp-btn btn shadow-lg rounded-pill position-fixed bottom-0 start-0 m-4 text-white fw-bold d-flex align-items-center gap-2 px-4 py-3">
+        <i class="bi bi-whatsapp fs-5"></i> Consultanos
+    </a>
+
+    <!-- Botón flotante de Pago (Derecha) -->
     <a href="/clientes/" class="floating-pay-btn btn shadow-lg rounded-pill position-fixed bottom-0 end-0 m-4 text-white fw-bold d-flex align-items-center gap-2 px-4 py-3">
         <i class="bi bi-wallet2 fs-5"></i> Pagá tu Póliza
     </a>
@@ -196,7 +213,7 @@
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Cotizador Flotante Integrado con Edad -->
+                <!-- Columna Derecha: Cotizador Flotante Integrado -->
                 <div class="col-lg-6" id="cotizador">
                     <div class="hero-quote-card p-4 p-md-4">
                         <div class="text-center mb-3">
@@ -284,7 +301,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold small mb-1">Edad</label>
+                                    <label class="form-label fw-semibold small mb-1">Edad del Conductor</label>
                                     <input type="number" class="form-control" id="edad" placeholder="Ej. 35" min="18" max="99" required>
                                 </div>
                                 <div class="col-md-6">
@@ -292,7 +309,7 @@
                                     <input type="text" class="form-control" id="cp" placeholder="Ej. 1744" required>
                                 </div>
                                 <div class="col-12 mt-3">
-                                    <button type="submit" class="btn btn-success btn-lg w-100 fw-bold py-2 shadow-sm fs-6">
+                                    <button type="submit" id="submitBtn" class="btn btn-success btn-lg w-100 fw-bold py-2 shadow-sm fs-6">
                                         <i class="bi bi-whatsapp me-2"></i>Solicitar Cotización
                                     </button>
                                 </div>
@@ -319,6 +336,9 @@
                     <div class="p-4 bg-light rounded-4 border-start border-primary border-4 text-start mt-4 shadow-sm">
                         <h5 class="fw-bold text-primary mb-1"><i class="bi bi-bullseye me-2"></i>Nuestra misión:</h5>
                         <p class="mb-0 text-dark">Proteger lo que más te importa con transparencia, agilidad y una respuesta rápida cuando más lo necesitás.</p>
+                    </div>
+                    <div class="mt-4 text-muted small">
+                        <i class="bi bi-patch-check-fill text-primary fs-5 me-1 align-middle"></i> Productor Asesor de Seguros - Matrícula SSN N° <strong>106708</strong>
                     </div>
                 </div>
             </div>
@@ -359,6 +379,7 @@
     <footer class="py-4 text-center">
         <div class="container">
             <p class="mb-1 fw-bold text-light">AM Seguros Generales</p>
+            <p class="small text-muted mb-1">Productor Asesor de Seguros — Matrícula SSN N° 106708</p>
             <p class="small text-muted mb-0">&copy; 2026 Todos los derechos reservados.</p>
         </div>
     </footer>
@@ -374,11 +395,27 @@
             const edad = document.getElementById('edad').value;
             const cp = document.getElementById('cp').value;
 
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Feedback visual antes de redirigir
+            submitBtn.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>¡Listo! Te estamos comunicando con un asesor...';
+            submitBtn.classList.remove('btn-success');
+            submitBtn.classList.add('btn-primary');
+            submitBtn.disabled = true;
+
             const telefonoDestino = '5491162528083';
             const mensaje = `Hola! Me gustaría solicitar una cotización para mi vehículo:\n\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}\n*Edad:* ${edad} años\n*Código Postal:* ${cp}`;
             
             const urlWhatsApp = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
-            window.open(urlWhatsApp, '_blank');
+            
+            setTimeout(function() {
+                window.open(urlWhatsApp, '_blank');
+                // Restaurar botón después de un momento
+                submitBtn.innerHTML = '<i class="bi bi-whatsapp me-2"></i>Solicitar Cotización';
+                submitBtn.classList.remove('btn-primary');
+                submitBtn.classList.add('btn-success');
+                submitBtn.disabled = false;
+            }, 1200);
         });
     </script>
 
