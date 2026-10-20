@@ -122,12 +122,13 @@
             border-color: #1e3a8a;
         }
 
-        /* Botones flotantes compactos y optimizados */
+        /* Botones flotantes compactos y optimizados para no ocupar espacio excesivo */
         .floating-whatsapp-btn, .floating-pay-btn {
             z-index: 1050;
             transition: transform 0.2s ease, background-color 0.2s ease;
-            font-size: 0.85rem;
-            padding: 8px 14px;
+            font-size: 0.78rem;
+            padding: 6px 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .floating-whatsapp-btn {
@@ -157,12 +158,12 @@
 <body>
 
     <!-- Botón flotante de WhatsApp Directo (Izquierda) -->
-    <a href="https://wa.me/5491162528083?text=Hola!%20Quiero%20hacerle%20una%20consulta%20sobre%20seguros." target="_blank" class="floating-whatsapp-btn btn shadow-lg rounded-pill position-fixed bottom-0 start-0 m-3 text-white fw-bold d-flex align-items-center gap-2">
+    <a href="https://wa.me/5491162528083?text=Hola!%20quiero%20hacer%20una%20consulta%20sobre%20un%20seguros." target="_blank" class="floating-whatsapp-btn btn rounded-pill position-fixed bottom-0 start-0 m-2 text-white fw-bold d-flex align-items-center gap-1">
         <i class="bi bi-whatsapp fs-6"></i> <span>Consultanos</span>
     </a>
 
     <!-- Botón flotante de Pago (Derecha) -->
-    <a href="/clientes/" class="floating-pay-btn btn shadow-lg rounded-pill position-fixed bottom-0 end-0 m-3 text-white fw-bold d-flex align-items-center gap-2">
+    <a href="/clientes/" class="floating-pay-btn btn rounded-pill position-fixed bottom-0 end-0 m-2 text-white fw-bold d-flex align-items-center gap-1">
         <i class="bi bi-wallet2 fs-6"></i> <span>Pagá tu Póliza</span>
     </a>
 
@@ -304,7 +305,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold small mb-1">Edad del Conductor</label>
+                                    <label class="form-label fw-semibold small mb-1">Edad</label>
                                     <input type="number" class="form-control" id="edad" placeholder="Ej. 35" min="18" max="99" required>
                                 </div>
                                 <div class="col-md-6">
@@ -407,7 +408,7 @@
             submitBtn.disabled = true;
 
             const telefonoDestino = '5491162528083';
-            const mensaje = `Hola! Me gustaría solicitar una cotización para mi vehículo:\n\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}\n*Edad:* ${edad} años\n*Código Postal:* ${cp}`;
+            const mensaje = `Hola! quiero hacer una consulta sobre un seguros.\n\n*Vehículo/Moto a cotizar:*\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}\n*Edad:* ${edad} años\n*Código Postal:* ${cp}`;
             
             const urlWhatsApp = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
             
