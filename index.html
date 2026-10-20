@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Cotizador Flotante Integrado con Años hasta el 2000 -->
+                <!-- Columna Derecha: Cotizador Flotante Integrado -->
                 <div class="col-lg-6" id="cotizador">
                     <div class="hero-quote-card p-4 p-md-4">
                         <div class="text-center mb-3">
@@ -239,7 +239,11 @@
                                         <option value="Anterior al 2000">Anterior al 2000</option>
                                     </select>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold small mb-1">Edad del Conductor</label>
+                                    <input type="number" class="form-control" id="edad" placeholder="Ej. 35" min="18" max="99" required>
+                                </div>
+                                <div class="col-md-6">
                                     <label class="form-label fw-semibold small mb-1">Código Postal</label>
                                     <input type="text" class="form-control" id="cp" placeholder="Ej. 1744" required>
                                 </div>
@@ -305,10 +309,11 @@
             const modelo = document.getElementById('modelo').value;
             const version = document.getElementById('version').value || 'No especificada';
             const anio = document.getElementById('anio').value;
+            const edad = document.getElementById('edad').value;
             const cp = document.getElementById('cp').value;
 
             const telefonoDestino = '5491162528083';
-            const mensaje = `Hola! Me gustaría solicitar una cotización para mi vehículo:\n\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}\n*Código Postal:* ${cp}`;
+            const mensaje = `Hola! Me gustaría solicitar una cotización para mi vehículo:\n\n*Marca:* ${marca}\n*Modelo:* ${modelo}\n*Versión:* ${version}\n*Año:* ${anio}\n*Edad:* ${edad} años\n*Código Postal:* ${cp}`;
             
             const urlWhatsApp = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
             window.open(urlWhatsApp, '_blank');
